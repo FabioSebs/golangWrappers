@@ -1,0 +1,4 @@
+{"level":"info","pid":24422,"go_version":"go1.20.4","time":"2023-12-16T18:28:14+07:00","caller":"/Users/Fabrzy/Desktop/Dev/golangWrappers/logs/logs.go:17","message":"testing"}
+{"level":"error","pid":24422,"go_version":"go1.20.4","error":"error","time":"2023-12-16T18:28:14+07:00","caller":"/Users/Fabrzy/Desktop/Dev/golangWrappers/logs/logs.go:24","message":"error encountered"}
+{"level":"info","time":"2023-12-16T18:29:46+07:00","message":"testing"}
+{"level":"error","error":"error","time":"2023-12-16T18:29:46+07:00","message":"error encountered"}
