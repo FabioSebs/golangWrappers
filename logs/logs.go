@@ -2,7 +2,6 @@ package logs
 
 import (
 	"os"
-	"runtime/debug"
 	"time"
 
 	"github.com/rs/zerolog"
@@ -38,11 +37,10 @@ func getFileLogger() (*os.File, zerolog.Logger) {
 			panic(err)
 		}
 
-		logfile, err := os.Create("logs/app.log")
+		_, err = os.Create("logs/app.log")
 		if err != nil {
 			panic(err)
 		}
-		defer logfile.Close()
 
 		file, err = os.OpenFile(
 			"logs/app.log",
@@ -65,11 +63,8 @@ func getFileLogger() (*os.File, zerolog.Logger) {
 }
 
 func init() {
-	buildInfo, _ := debug.ReadBuildInfo()
 	logger = zerolog.New(zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339}).
 		With().
 		Timestamp().
-		Int("pid", os.Getpid()).
-		Str("go_version", buildInfo.GoVersion).
 		Logger()
 }
