@@ -7,18 +7,23 @@ import (
 	"github.com/rs/zerolog"
 )
 
-var fileLogger zerolog.Logger
-var logger zerolog.Logger
+var (
+	fileLogger zerolog.Logger
+	logger     zerolog.Logger
+	colorGreen string = "\033[32m"
+	colorReset string = "\033[0m"
+	colorRed   string = "\033[31m"
+)
 
 func LogInfo(msg string) {
-	logger.Info().Msg(msg)
+	logger.Info().Msg(string(colorGreen) + msg + string(colorReset))
 	file, fileLogger := getFileLogger()
 	fileLogger.Info().Msg(msg)
 	defer file.Close()
 }
 
 func LogError(err error) {
-	logger.Err(err).Msg("error encountered")
+	logger.Err(err).Msg(string(colorGreen) + "error encountered" + string(colorReset))
 	file, fileLogger := getFileLogger()
 	fileLogger.Err(err).Msg("error encountered")
 	defer file.Close()
@@ -51,8 +56,6 @@ func getFileLogger() (*os.File, zerolog.Logger) {
 			panic(err)
 		}
 	}
-
-	defer file.Close()
 
 	fileLogger = zerolog.New(file).
 		Level(zerolog.TraceLevel).
