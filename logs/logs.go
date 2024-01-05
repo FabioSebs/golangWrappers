@@ -16,14 +16,14 @@ var (
 )
 
 func LogInfo(msg string) {
-	logger.Info().Msg("ℹ️" + string(colorGreen) + msg + string(colorReset))
+	logger.Info().Msg("ℹ️  " + string(colorGreen) + msg + string(colorReset))
 	file, fileLogger := getFileLogger()
 	fileLogger.Info().Msg(msg)
 	defer file.Close()
 }
 
 func LogError(err error) {
-	logger.Err(err).Msg("🚫" + string(colorGreen) + "error encountered" + string(colorReset))
+	logger.Err(err).Msg("🚫  " + string(colorGreen) + "error encountered" + string(colorReset))
 	file, fileLogger := getFileLogger()
 	fileLogger.Err(err).Msg("error encountered")
 	defer file.Close()
