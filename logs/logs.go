@@ -23,7 +23,7 @@ func LogInfo(msg string) {
 }
 
 func LogError(err error) {
-	logger.Err(err).Msg("🚫  " + string(colorGreen) + "error encountered" + string(colorReset))
+	logger.Err(err).Msg("🚫  " + string(colorGreen) + "error encountered" + string(colorReset) + "\n\n")
 	file, fileLogger := getFileLogger()
 	fileLogger.Err(err).Msg("error encountered")
 	defer file.Close()
